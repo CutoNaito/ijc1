@@ -5,6 +5,7 @@
 #include <limits.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include "error.h"
 
 typedef unsigned long *bitset_t;
 typedef unsigned long bitset_index_t;
@@ -19,8 +20,7 @@ typedef unsigned long bitset_index_t;
     assert(size > 0); \
     unsigned long *arr_name = (unsigned long *)malloc(size + sizeof(unsigned long)); \
     if (arr_name == NULL) { \
-        fprintf(stderr, "Chyba alokace paměti\n"); \
-        exit(1); \
+        error_exit("bitset_alloc: Chyba alokace pameti"); \
     } \
     arr_name[0] = size;
      
@@ -33,6 +33,9 @@ typedef unsigned long bitset_index_t;
     arr_name[0]
 
 #define bitset_setbit(arr_name, index, bool_value) \
+    if (index >= bitset_size(arr_name)) { \
+        error_exit("bitset_setbit: Index %lu mimo rozsah 0..%lu", index, bitset_size(arr_name) - 1); \
+    } \
     if (bool_value) { \
         arr_name[index / (sizeof(unsigned long) * CHAR_BIT) + 1] |= 1UL << (index % (sizeof(unsigned long) * 8)); \
     } else { \
@@ -45,7 +48,9 @@ typedef unsigned long bitset_index_t;
     }
 
 #define bitset_getbit(arr_name, index) \
+    if (index >= bitset_size(arr_name)) { \
+        error_exit("bitset_getbit: Index %lu mimo rozsah 0..%lu", index, bitset_size(arr_name) - 1); \
+    } \
     (arr_name[index / (sizeof(unsigned long) * CHAR_BIT) + 1] & (1UL << (index % (sizeof(unsigned long) * CHAR_BIT))) ? 1 : 0)
-
 
 #endif
