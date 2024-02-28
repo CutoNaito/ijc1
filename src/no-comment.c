@@ -68,14 +68,17 @@ int main(int argc, char **argv)
             break;
 
         case 4:
-            if (c == '/') {
+            if (c == '\\') {
                 state = 5;
+            } else if (c == '\n') {
+                putchar(c);
+                state = 0;
             }
 
             break;
 
         case 5:
-            if (c != '/') {
+            if (c != '\\') {
                 state = 4;
             }
 
