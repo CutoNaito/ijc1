@@ -2,7 +2,7 @@
 
 int main(void) 
 {
-    bitset_alloc(arr, 100);
+    bitset_alloc(arr, 666000000);
 
     Eratosthenes(arr);
 
