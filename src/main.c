@@ -1,3 +1,4 @@
+#include "bitset.h"
 #include "eratosthenes.h"
 
 int main(void) 
