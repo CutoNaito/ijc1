@@ -17,3 +17,11 @@ make run        /* runs both versions with extended ulimit (85000 KiB) */
 
 ### Windows:
 not possible atm, i will totally change the CC to zig tho
+
+## Performance
+Comparing GNU's `time` with ctime's `clock()` on Intel Core i5-1235U:
+```
+GNU's time: 36.916s
+
+clock(): 36.9s
+```

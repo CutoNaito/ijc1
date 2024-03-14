@@ -12,12 +12,12 @@ typedef unsigned long bitset_index_t;
 
 #define bitset_create(arr_name, size) \
     /* sizeof(unsigned long) = 64 (on most architectures), CHAR_BIT = 8 (on most architectures) */ \
-    unsigned long arr_name[size / (sizeof(unsigned long) * CHAR_BIT) + 1] = {0} \
     static_assert(size > 0, "Size must be greater than 0"); \
+    unsigned long arr_name[size / (sizeof(unsigned long) * CHAR_BIT) + 1] = {0} \
     arr_name[0] = size;
 
 #define bitset_alloc(arr_name, size) \
-    assert(size > 0); \
+    static_assert(size > 0, "Size must be greater than 0"); \
     unsigned long *arr_name = (unsigned long *)malloc(size + sizeof(unsigned long)); \
     if (arr_name == NULL) { \
         error_exit("bitset_alloc: Chyba alokace pameti"); \
