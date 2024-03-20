@@ -4,13 +4,13 @@ CFLAGS = -g -std=c11 -pedantic -Wall -Wextra -lm
 
 TARGET = bin/primes bin/primes-i
 
-prime_src = src/main.c src/error.c src/eratosthenes.c
+prime_src = src/primes.c src/error.c src/eratosthenes.c
 no-comment_src = src/no-comment.c src/error.c
 
 all: primes primes-i no-comment
 
 clean:
-	rm -f $(TARGET)
+	rm -f $(TARGET) bin/no-comment
 
 # Using macros
 primes:

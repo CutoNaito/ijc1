@@ -1,3 +1,8 @@
+// primes.c
+// Řešení IJC-DU1, příklad a), 19.2.2024
+// Autor: Matěj Šturma, FIT
+// Přeloženo: gcc 13.2.1
+
 #include <time.h>
 #include "bitset.h"
 #include "eratosthenes.h"
