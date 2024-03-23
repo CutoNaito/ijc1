@@ -15,11 +15,24 @@ int main(void)
 
     Eratosthenes(arr);
 
-    for (size_t i = 0; i < bitset_size(arr); i++) {
+    int primes[10];
+    int count = 0;
+
+    for (size_t i = bitset_size(arr); i > 0; i--) {
         if (bitset_getbit(arr, i)) {
-            printf("%lu\n", i);
+            primes[count] = i;
+            count++;
+
+            if (count == 10) {
+                break;
+            }
         }
     }
+
+    for (int i = 9; i >= 0; i--) {
+        printf("%d\n", primes[i]);
+    }
+
 
     bitset_free(arr);
 
